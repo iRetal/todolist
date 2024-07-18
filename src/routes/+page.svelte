@@ -1,15 +1,24 @@
-<!-- YOU CAN DELETE EVERYTHING IN THIS PAGE -->
+<script lang="ts">
+    import dayjs from 'dayjs';
+    import 'dayjs/locale/ar';
 
-<div class="container h-full mx-auto flex justify-center items-center">
-	<div class="space-y-5">
-		<h1 class="h1">Let's get cracking bones!</h1>
-		<p>Start by exploring:</p>
-		<ul>
-			<li><code class="code">/src/routes/+layout.svelte</code> - barebones layout</li>
-			<li><code class="code">/src/app.postcss</code> - app wide css</li>
-			<li>
-				<code class="code">/src/routes/+page.svelte</code> - this page, you can replace the contents
-			</li>
-		</ul>
-	</div>
+	dayjs.locale('ar')
+
+	let period = dayjs().format('a') == "م" ? "مساء" : "صباح";
+</script>
+
+<div class="p-10">
+	<header class="flex justify-between">
+		<div>
+			<h1 class="text-4xl mb-2">
+				{period} الخير 👋
+			</h1>
+			<h2 class="text-lg text-surface-900/30" >
+		    {dayjs().format('اليوم, dddd D MMMM YYYY')}
+			</h2>
+		</div>
+		<div class="bg-slate-400 w-20 h-20">
+
+		</div>
+	</header>
 </div>
