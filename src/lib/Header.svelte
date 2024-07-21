@@ -1,10 +1,22 @@
 <script lang="ts">
+    import { ListBox, ListBoxItem, popup, type PopupSettings } from '@skeletonlabs/skeleton';
     import dayjs from 'dayjs';
     import 'dayjs/locale/ar';
 
 	dayjs.locale('ar')
 
 	let period = dayjs().format('a') == "م" ? "مساء" : "صباح";
+
+    
+let comboboxValue: string = "جميع المهام";
+
+const popupCombobox: PopupSettings = {
+	event: 'click',
+	target: 'popupCombobox',
+	placement: 'bottom',
+	closeQuery: '.listbox-item'
+};
+				
 </script>
 
 <header class="flex justify-between">
@@ -12,11 +24,24 @@
         <h1 class="text-4xl mb-2">
             {period} الخير 👋
         </h1>
-        <h2 class="text-lg text-surface-900/30" >
+        <h2 class="text-lg text-surface-900" >
         {dayjs().format('اليوم, dddd D MMMM YYYY')}
         </h2>
     </div>
-    <div class="bg-slate-400 w-20 h-20">
-
-    </div>
+    
+<button class="btn !bg-white w-48 h-fit py-4 justify-between" use:popup={popupCombobox}>
+	<span>{comboboxValue}</span>
+	<span class="!m-0">
+		<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M11.178 19.569a.998.998 0 0 0 1.644 0l9-13A.999.999 0 0 0 21 5H3a1.002 1.002 0 0 0-.822 1.569z"/></svg>
+	</span>
+</button>
+					
+<div class="card w-48 shadow-xl py-2" data-popup="popupCombobox">
+	<ListBox rounded="rounded-none" active="variant-filled-primary">
+		<ListBoxItem bind:group={comboboxValue} name="medium" value="جميع المهام">جميع المهام</ListBoxItem>
+		<ListBoxItem bind:group={comboboxValue} name="medium" value="مهام اليوم">مهام اليوم</ListBoxItem>
+	</ListBox>
+	<div class="arrow bg-surface-100-800-token" />
+</div>
+					
 </header>
