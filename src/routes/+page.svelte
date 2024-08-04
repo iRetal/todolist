@@ -1,28 +1,11 @@
 <script lang="ts">
 	import Header from "$lib/Header.svelte";
-    import { tasks } from "$lib/stores/tasks";
-    import dayjs from "dayjs";
-
-    let title = "";
-
-    function addTask() {
-        tasks.update((currentTasks) => {
-            currentTasks.push({
-                title,
-                assighnedDate: dayjs(),
-                isDone: false,
-            });
-
-            return currentTasks;
-        });
-        title = "";
-    }
+    import TaskInput from "$lib/TaskInput.svelte";
+    import TaskList from "$lib/TasksList.svelte";
 </script>
 
-<div class="p-10 flex flex-col gap-8">
+<div class="p-5 sm:p-7 md:p-8 lg:p-10 xl:p-12 flex flex-col gap-8 max-w-screen-lg mx-auto">
     <Header />
-    <div class="input-group input-group-divider flex justify-between">
-        <input bind:value={title} class="flex-1 !bg-white" type="search" placeholder="عنوان المهمة" />
-        <button class="variant-filled-primary">إضافة</button>
-    </div>
+    <TaskInput />
+    <TaskList />
 </div>
